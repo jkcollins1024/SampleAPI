@@ -20,7 +20,6 @@ namespace SampleAPI.Domains.Surveys.Commands
             }
 
             survey.Participants.Add(participant);
-            //await context.SurveyParticipants.AddAsync(participant, cancellationToken);
             await context.SaveChangesAsync();
             return participant.Id;
         }

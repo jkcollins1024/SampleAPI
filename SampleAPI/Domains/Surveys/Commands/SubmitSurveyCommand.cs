@@ -22,6 +22,7 @@ namespace SampleAPI.Domains.Surveys.Commands
                 throw new ArgumentException($"Participant {command.ParticipantId} does not exist");
             }
 
+            //add or update responses, based on question ID
             foreach (var responseData in command.ResponseData)
             {
                 var response = participant.Responses.FirstOrDefault(r => r.SurveyQuestionId == responseData.QuestionId);
@@ -36,7 +37,7 @@ namespace SampleAPI.Domains.Surveys.Commands
                     participant.Responses.Add(response);
                 }
             }
-            //await context.SurveyParticipants.AddAsync(participant, cancellationToken);
+            
             await context.SaveChangesAsync();
         }
     }
